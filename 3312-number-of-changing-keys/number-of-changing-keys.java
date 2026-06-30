@@ -1,26 +1,12 @@
-// class Solution {
-//     public int countKeyChanges(String s) {
-//         int count = 0;
-//         s = s.toLowerCase(); // convert once
-//         for (int i = 0; i < s.length() - 1; i++) {
-//             if (s.charAt(i) != s.charAt(i + 1)) {
-//                 count++;
-//             }
-//         }
-//         return count;
-//     }
-// }
 class Solution {
     public int countKeyChanges(String s) {
-        int count = 0;
-
-        for (int i = 0; i < s.length() - 1; i++) {
-            int diff = Math.abs(s.charAt(i) - s.charAt(i + 1));
-
-            if (diff != 0 && diff != 32) {
-                count++;
+        int ans = 0;
+        for(int i = 1; i < s.length(); i++) {
+            if(Character.toLowerCase(s.charAt(i)) != Character.toLowerCase(s.charAt(i-1))) {
+                ans++;
             }
         }
-        return count;
+
+        return ans;
     }
 }
