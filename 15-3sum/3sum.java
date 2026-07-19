@@ -25,6 +25,17 @@
 // }
 
 
+// 1. Sort the array.
+// 2. Fix one element (i).
+// 3. Put two pointers:
+//       left = i + 1
+//       right = last index
+// 4. Find sum:
+//       sum == 0 → Store answer, move both pointers.
+//       sum < 0  → left++
+//       sum > 0  → right--
+// 5. Skip duplicates to avoid repeated triplets.
+
 
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
