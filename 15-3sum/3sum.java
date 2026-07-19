@@ -26,64 +26,43 @@
 
 
 
-import java.util.*;
-
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
-
-        List<List<Integer>> ans = new ArrayList<>();
-
-        // Step 1: Sort the array
+        int n = nums.length;
         Arrays.sort(nums);
+        List<List<Integer>> ans = new ArrayList<>();
+        for(int i =0;i<n-2;i++){
 
-        // Step 2: Fix one element at a time
-        for (int i = 0; i < nums.length - 2; i++) {
-
-            // Skip duplicate first elements
-            if (i > 0 && nums[i] == nums[i - 1]) {
+             // Skip duplicate fixed elements
+            if (i > 0 && nums[i] == nums[i - 1])//agr dono same value h tohh same ans aaega isliye ignore
                 continue;
-            }
-
-            // Two pointers
-            int left = i + 1;
-            int right = nums.length - 1;
-
-            while (left < right) {
-
-                int sum = nums[i] + nums[left] + nums[right];
-
-                // Triplet found
-                if (sum == 0) {
-
+            int left=i+1;
+            int right= n-1;
+            while(left <right){
+                int sum= nums[i]+nums[left]+nums[right];
+                if(sum ==0){
                     ans.add(Arrays.asList(nums[i], nums[left], nums[right]));
-
-                    // Skip duplicate left values
-                    while (left < right && nums[left] == nums[left + 1]) {
+                    left++;
+                    right--;
+                
+                 // Skip duplicate left values
+                    while (left < right && nums[left] == nums[left - 1])
                         left++;
-                    }
 
-                    // Skip duplicate right values
-                    while (left < right && nums[right] == nums[right - 1]) {
+                // Skip duplicate right values
+                    while (left < right && nums[right] == nums[right + 1])
                         right--;
-                    }
+                }
 
-                    // Move both pointers
-                    left++;
+                else if(sum > 0){
                     right--;
                 }
-
-                // Sum is too small, increase it
-                else if (sum < 0) {
+                else{
                     left++;
-                }
-
-                // Sum is too large, decrease it
-                else {
-                    right--;
-                }
+                } 
             }
         }
-
         return ans;
     }
 }
+//Pehle array sort karte hain. Phir har element ko ek baar fix karte hain. Baaki do numbers ko left aur right pointers se dhoondhte hain. Agar sum 0 ho to triplet store karte hain aur dono pointers move karke duplicates skip karte hain. Agar sum chhota ho to left++ karte hain kyunki sorted array me sum badhega. Agar sum bada ho to right-- karte hain kyunki sum kam hoga. Is tarah har triplet sirf ek baar milta hai aur overall time complexity O(n²) hoti hai
