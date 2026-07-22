@@ -7,7 +7,9 @@ class Solution {
             count++;
             temp = temp.next;
         }
+
         temp = head;
+
         int move;
         if (count % 2 == 0) {
             move = count / 2;      // Even
