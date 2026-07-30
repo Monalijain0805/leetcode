@@ -38,6 +38,7 @@ public class Solution {
                 diff--;
             }
         }
+        //move p1 p2 together here
         while (p1 != null && p2 != null) {
             if (p1 == p2) {
                 return p1;
